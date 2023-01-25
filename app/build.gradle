@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 33
+    namespace 'com.levi.embededserver'
+    defaultConfig {
+        applicationId "com.levi.embeddedserver"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    packagingOptions {
+        jniLibs {
+            excludes += ['META-INF/*', 'META-INF/licenses/*']
+        }
+        resources {
+            excludes += ['META-INF/*', 'META-INF/licenses/*', '**/attach_hotspot_windows.dll']
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+
+    // Embedded Server
+    implementation 'io.ktor:ktor-server-core:1.6.4'
+    implementation 'io.ktor:ktor-gson:1.6.4'
+    implementation 'io.ktor:ktor-server-netty:1.6.2'
+    implementation 'io.ktor:ktor-websockets:1.6.2'
+    // implementation 'com.github.Svoka:android-folder-picker-library:2.2'
+
+}
